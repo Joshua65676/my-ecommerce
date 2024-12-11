@@ -1,8 +1,36 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "@/assets";
+import { fetchProductData } from "../utils/fetchProductData";
 
-const Category = () => {
+type Product = {
+  _id: number;
+  title: string;
+  description: string;
+  oldPrice: number;
+  price: number;
+  brand: string;
+  image: string;
+  isNew: boolean;
+  category: string;
+};
+
+const Category = ({ fetchAll }: { fetchAll: boolean }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const productData = await fetchProductData(fetchAll);
+        setProducts(productData);
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+      }
+    };
+
+    getProducts();
+  }, [fetchAll]);
 
   const handleClick = () => {
     setIsVisible(!isVisible);
@@ -14,8 +42,24 @@ const Category = () => {
       </button>
 
       {isVisible && (
-        <div className="absolute">
-          <span>All category</span>
+        <div className="flex flex-col text-Black absolute bg-LightGrayishBlue w-[15rem] -ml-20 mt-2 shadow-2xl pl-6 py-8 gap-8 rounded-xl">
+          <div className="flex flex-row gap-2">
+            <GiHamburgerMenu className="w-5 h-6 text-Black" />
+            <h3 className="text-lg font-semibold font-kumbh">All Categories</h3>
+          </div>
+          <div className="flex flex-col gap-5">
+            {products.length > 0 ? (
+              products.map((product) => (
+                <div key={product._id}>
+                  <h3 className=" text-sm font-kumbh font-light">
+                    {product.category}
+                  </h3>
+                </div>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
+          </div>
         </div>
       )}
     </div>

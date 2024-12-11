@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: Request) {
+     const url = new URL(request.url); 
+     const getAll = url.searchParams.get('all');
          const productData = [
             {
               _id: 101,
@@ -246,5 +248,13 @@ export async function GET() {
               category: "Fashion",
             },
           ];
-          return NextResponse.json({ productData });
+          if (getAll === 'true') { 
+            return NextResponse.json({ productData }); 
+          } else { 
+            const categories = new Set(productData.map(product => product.category)); 
+            const uniqueProducts = Array.from(categories).map(category => {
+               return productData.find(product => product.category === category); 
+              }); 
+              return NextResponse.json({ productData: uniqueProducts });
+            }
 }

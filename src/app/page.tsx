@@ -4,7 +4,7 @@ import React from 'react'
 const page: React.FC = () => {
   return (
     <div>
-      <Banner />
+      <Banner fetchAll={false}/>
     </div>
   )
 }

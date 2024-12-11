@@ -1,7 +1,7 @@
-"use client"
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { fetchProductData } from '../utils/fetchProductData';
+"use client";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { fetchProductData } from "../utils/fetchProductData";
 
 type Product = {
   _id: number;
@@ -15,43 +15,51 @@ type Product = {
   category: string;
 };
 
-const Category = () => {
+const Banner = ({ fetchAll }: { fetchAll: boolean }) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const productData = await fetchProductData();
+        const productData = await fetchProductData(fetchAll);
         setProducts(productData);
       } catch (error) {
-        console.error('Error fetching product data:', error);
+        console.error("Error fetching product data:", error);
       }
     };
 
     getProducts();
-  }, []);
+  }, [fetchAll]);
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 py-40">
-      {products.length > 0 ? (
-        products.map(product => (
-          <div key={product._id} className="p-4 border rounded-lg shadow-lg">
-            <Image
-              src={product.image}
-              alt={product.title}
-              width={300}  // Adjust the width
-              height={200} // Adjust the height
-              className="object-cover rounded-md"
-            />
-            <h3 className="mt-2 text-lg font-semibold">{product.category}</h3>
-          </div>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+    <main className="py-28 container w-full max-w-7xl flex flex-col gap-10">
+      <div className="">
+        <h1 className="text-4xl font-kumbh font-bold">Category deals</h1>
+      </div>
+      <div className="flex flex-row justify-between">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div key={product._id}>
+              <div className="">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  width={150}
+                  height={10}
+                  className="object-cover rounded-xl"
+                />
+              </div>
+              <h3 className=" text-base font-mono text-center">
+                {product.category}
+              </h3>
+            </div>
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+    </main>
   );
 };
 
-export default Category;
-
+export default Banner;
