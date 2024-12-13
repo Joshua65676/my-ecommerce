@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchProductData } from "../utils/fetchProductData";
+// import Link from "next/link";
 
 type Product = {
   _id: number;
@@ -39,19 +40,21 @@ const Banner = ({ fetchAll }: { fetchAll: boolean }) => {
       <div className="flex flex-row justify-between">
         {products.length > 0 ? (
           products.map((product) => (
-            <div key={product._id}>
-              <div className="">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  width={150}
-                  height={10}
-                  className="object-cover rounded-xl"
-                />
-              </div>
-              <h3 className=" text-base font-mono text-center">
-                {product.category}
-              </h3>
+            <div key={product._id} className="flex flex-col gap-3">
+              {/* <Link href={}> */}
+                <div className="">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={150}
+                    height={10}
+                    className="object-cover rounded-xl"
+                  />
+                </div>
+                <h3 className=" text-base font-mono text-center font-semibold">
+                  {product.category}
+                </h3>
+              {/* </Link> */}
             </div>
           ))
         ) : (

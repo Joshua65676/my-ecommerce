@@ -38,7 +38,7 @@ const Category = ({ fetchAll }: { fetchAll: boolean }) => {
   return (
     <div>
       <button className="pt-2" onClick={handleClick}>
-        <GiHamburgerMenu className="w-7 h-6 text-LightGrayishBlue" />
+        <GiHamburgerMenu className="w-7 h-6 text-GrayishBlue" />
       </button>
 
       {isVisible && (
@@ -51,7 +51,7 @@ const Category = ({ fetchAll }: { fetchAll: boolean }) => {
             {products.length > 0 ? (
               products.map((product) => (
                 <div key={product._id}>
-                  <h3 className=" text-sm font-kumbh font-light">
+                  <h3 className=" text-sm font-kumbh font-thin">
                     {product.category}
                   </h3>
                 </div>

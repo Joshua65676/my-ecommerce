@@ -1,5 +1,5 @@
 const products = [
-    {
+      {
         id:"1",
         name: "Lorem anim anim",
         image:

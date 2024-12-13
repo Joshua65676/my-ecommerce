@@ -13,7 +13,7 @@ const AccountButton = () => {
   return (
     <div>
       <button
-        className={`flex flex-row gap-2 text-LightGrayishBlue ${
+        className={`flex flex-row gap-2 text-GrayishBlue ${
           isActive ? " text-Orange" : ""
         } hover:text-Orange`}
         onClick={handleClick}

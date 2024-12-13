@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
               </span>
             </Link>
 
-            <Category />
+            <Category fetchAll={false}/>
           </div>
           {/* Search input */}
           <div className="flex items-center justify-center p-5">

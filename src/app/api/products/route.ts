@@ -4,6 +4,21 @@ export async function GET(request: Request) {
      const url = new URL(request.url); 
      const getAll = url.searchParams.get('all');
          const productData = [
+           {
+            _id:"100",
+            title: "Samba Shoes Green",
+            description:
+            "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
+            oldPrice: 400.0,
+            price: 309.99,
+            brand: "Adidas Inc",
+            image:
+              "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/52c951e30dcb4ff1bfdfd053405a6f75_9366/Samba_Shoes_Green_IG1243_01_standard.jpg",
+            isNew: true,
+            category: "Fashion",
+            soldOut: 4000,
+            rating: 4.4,
+          },
             {
               _id: 101,
               title: "Canon EOS Rebel T100",
@@ -15,6 +30,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/1r28gMk/1.webp",
               isNew: true,
               category: "Electronics",
+              soldOut: 3000,
+              rating: 4.3,
             },
           
             {
@@ -28,6 +45,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/qdfB3s6/2.webp",
               isNew: true,
               category: "Electronics",
+              soldOut: 4000,
+            rating: 4.4,
             },
             {
               _id: 103,
@@ -40,6 +59,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/VL1Dnv1/4.webp",
               isNew: true,
               category: "Electronics",
+              soldOut: 2000,
+            rating: 3.4,
             },
             {
               _id: 104,
@@ -51,6 +72,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/5F3nWv6/7.webp",
               isNew: true,
               category: "Electronics",
+              soldOut: 5000,
+              rating: 4.4,
             },
             {
               _id: 105,
@@ -63,6 +86,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/xgZWmdq/8.jpg",
               isNew: true,
               category: "Electronics",
+              soldOut: 4000,
+              rating: 4.4,
             },
             {
               _id: 106,
@@ -75,6 +100,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/rQKjVC2/5.webp",
               isNew: true,
               category: "Electronics",
+              soldOut: 3000,
+              rating: 3.0,
             },
             {
               _id: 107,
@@ -87,18 +114,23 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/Ycz8hkV/6.webp",
               isNew: true,
               category: "Home Decoration",
+              soldOut: 2000,
+              rating: 3.0,
             },
             {
               _id: 108,
-              title: "T-Shirt Men",
+              title: "Samba Shoes Green",
               description:
-                "St Patricks Day T-Shirt Men -Image by Shutterstock, Male XX-Large",
+              "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
               oldPrice: 15.0,
               price: 18.99,
-              brand: "Smartprints",
-              image: "https://i.ibb.co/BLCDw7v/3.webp",
+              brand: "Adidas Inc",
+              image: 
+              "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/52c951e30dcb4ff1bfdfd053405a6f75_9366/Samba_Shoes_Green_IG1243_01_standard.jpg",
               isNew: true,
               category: "Fashion",
+              soldOut: 2000,
+            rating: 3.4,
             },
             {
               _id: 109,
@@ -111,6 +143,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/qCXcPhq/8.webp",
               isNew: true,
               category: "Home Decoration",
+              soldOut: 3000,
+              rating: 4.0,
             },
             {
               _id: 110,
@@ -122,18 +156,23 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/TTS9wY4/9.webp",
               isNew: true,
               category: "Equipments",
+              soldOut: 2000,
+              rating: 3.0,
             },
             {
               _id: 111,
-              title: "Girls Cropped",
+              title: "Favorites Backpack Turquoise",
               description:
-                "Free Assembly Girls Cropped Mixed Cable Knit Fair Isle Sweater, Sizes 4-18",
+              "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
               oldPrice: 20.0,
               price: 15.31,
-              brand: "Free Assembly",
-              image: "https://i.ibb.co/BVzsqvz/10.webp",
+              brand: "Adidas Inc",
+              image:
+              "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7220fd98945942b0a2ceafa50188fc5c_9366/Favorites_Backpack_Turquoise_HY3000_01_standard.jpg",
               isNew: true,
               category: "Fashion",
+              soldOut: 2000,
+              rating: 3.5,
             },
             {
               _id: 112,
@@ -146,6 +185,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/zPDcCQY/top4.webp",
               isNew: true,
               category: "Beauty Product",
+              soldOut: 2000,
+            rating: 3.4,
             },
             {
               _id: 113,
@@ -158,6 +199,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/QC4L3RF/top8.jpg",
               isNew: true,
               category: "Beauty Product",
+              soldOut: 3000,
+            rating: 4.1,
             },
             {
               _id: 114,
@@ -171,6 +214,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/dKmw2sC/top2.webp",
               isNew: true,
               category: "Beauty Product",
+              soldOut: 2000,
+            rating: 3.4,
             },
             {
               _id: 115,
@@ -184,6 +229,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/sJwg0YF/top1.webp",
               isNew: true,
               category: "Beauty Product",
+              soldOut: 3000,
+            rating: 4.4,
             },
             {
               _id: 116,
@@ -197,6 +244,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/v1sPXLq/top5.webp",
               isNew: true,
               category: "Beauty Product",
+              soldOut: 2000,
+            rating: 2.4,
             },
             {
               _id: 117,
@@ -209,6 +258,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/yPJjB3r/top6.webp",
               isNew: false,
               category: "Beauty Product",
+              soldOut: 2000,
+            rating: 3.4,
             },
             {
               _id: 118,
@@ -222,6 +273,8 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/zmw8xFY/top7.webp",
               isNew: true,
               category: "Beauty Product",
+              soldOut: 3000,
+            rating: 3.4,
             },
             {
               _id: 119,
@@ -235,17 +288,68 @@ export async function GET(request: Request) {
               image: "https://i.ibb.co/vHJkwzt/top3.webp",
               isNew: false,
               category: "Beauty Product",
+              soldOut: 3000,
+              rating: 3.5,
             },
             {
               _id: 120,
-              title: "Girls Sleeveless Cutout",
-              description: "Free Assembly Girls Sleeveless Cutout Jumpsuit, Sizes 4-18",
+              title: "Superlite Hat Black",
+              description:
+              "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
               oldPrice: 52.0,
               price: 22.0,
-              brand: "Free Assembly",
-              image: "https://i.ibb.co/BNXTLkq/12.webp",
+              brand: "Adidas Inc",
+              image:
+          "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/23092e0453ce4f8085c2ad47018102bb_9366/Superlite_Hat_Black_EX6700_01_standard.jpg",
               isNew: false,
               category: "Fashion",
+              soldOut: 3000,
+              rating: 4.0,
+            },
+            {
+              _id: 121,
+              title: "Stan Smith Crepe Shoes White",
+              description:
+              "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
+              oldPrice: 62.0,
+              price: 38,
+              brand: "Adidas",
+              image:
+              "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/584dcc48a1734ca4baf314572273e64e_9366/Stan_Smith_Crepe_Shoes_White_IG5531_01_standard.jpg",
+              isNew: false,
+              category: "Fashion",
+              soldOut: 2000,
+              rating: 4.0,
+            },
+            {
+              _id: 122,
+              title: "CUFFED POM Black",
+              description:
+          "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
+              oldPrice: 52.0,
+              price: 22,
+              brand: "Adidas",
+              image:
+          "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/418d83e0c655438da814ad1d00eccd79_9366/CUFFED_POM_Black_GQ8103_01_standard.jpg",
+              isNew: false,
+              category: "Fashion",
+              soldOut: 2000,
+              rating: 4.0,
+            },
+            {
+              _id: 123,
+              title: "Training HIIT Backpack Grey",
+              description:
+              "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
+              oldPrice: 52.0,
+              price: 22.0,
+              brand: "Adidas Inc",
+              image:
+          "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/26c21c4b8bcb43d096caaf330079978b_9366/Designed_for_Training_HIIT_Backpack_Grey_HT2441_01_standard.jpg",
+              isNew: false,
+              category: "Fashion",
+              soldOut: 2000,
+              rating: 3.0,
             },
           ];
           if (getAll === 'true') { 
