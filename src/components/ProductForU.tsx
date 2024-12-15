@@ -103,19 +103,6 @@ const ProductForU = () => {
                   {hoveredProduct === product._id && (
                     <Link href={{
                       pathname: `/product/${product._id}`,
-                      // query: {
-                      //   _id: product._id,
-                      //   title: product.title,
-                      //   description: product.description,
-                      //   oldPrice: product.oldPrice,
-                      //   price: product.price,
-                      //   brand: product.brand,
-                      //   image: product.image,
-                      //   isNew: product.isNew,
-                      //   category: product.category,
-                      //   soldOut: product.soldOut,
-                      //   rating: product.rating,
-                      // }
                     }}>
                       <Button className="bg-BgOrange hover:bg-PaleOrange border-none rounded-xl">
                         <span className="text-Black text-sm font-kumbh font-semibold">

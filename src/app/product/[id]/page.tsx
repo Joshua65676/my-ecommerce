@@ -2,7 +2,7 @@ import Image from 'next/image';
 // import { use } from 'next/navigation';
 
 type Product = {
-  _id: string;
+  _id: number;
   title: string;
   description: string;
   oldPrice: number;
@@ -15,7 +15,7 @@ type Product = {
   rating: number;
 };
 
-async function getProductData(id: string): Promise<Product | null> {
+async function getProductData(id: number): Promise<Product | null> {
   const response = await fetch(`http://localhost:3000/api/products?id=${id}`);
   if (!response.ok) {
     return null;
@@ -25,7 +25,8 @@ async function getProductData(id: string): Promise<Product | null> {
 }
 
 const ProductDetails = async ({ params }: { params: { id: string } }) => {
-  const product = await getProductData(params.id);
+  const productId = Number(params.id);
+  const product = await getProductData(productId);
 
   if (!product) {
     return <p>Product not found</p>;

@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
 
-// export async function GET(request: Request) {
-//   const url = new URL(request.url); 
-//   const getAll = url.searchParams.get('all');
          const productData = [
            {
-            _id: "100",
+            _id: 100,
             title: "Samba Shoes Green",
             description:
             "Velit fugiat deserunt veniam adipisicing ad adipisicing proident occaecat enim. Ut irure aliquip tempor veniam pariatur incididunt adipisicing consequat excepteur tempor eiusmod tempor. Occaecat eu velit velit ad nulla commodo commodo dolor consectetur proident reprehenderit sint. Deserunt excepteur incididunt duis voluptate est amet velit incididunt cupidatat excepteur aute. Commodo ea amet ipsum adipisicing amet est nostrud consequat eiusmod non ullamco. Duis amet sint aliqua adipisicing labore mollit.",
@@ -20,7 +17,7 @@ import { NextResponse } from "next/server";
             rating: 4.4,
           },
             {
-              _id: "101",
+              _id: 101,
               title: "Canon EOS Rebel T100",
               description:
                 "Canon EOS Rebel T100 Digital SLR Camera with 18-55mm Lens Kit, 18 Megapixel Sensor, Wi-Fi, DIGIC4+, SanDisk 32GB Memory Card and Live View Shooting",
@@ -356,7 +353,7 @@ import { NextResponse } from "next/server";
           export async function GET(request: Request) { 
             const url = new URL(request.url);
             const getAll = url.searchParams.get('all');
-            const id = url.searchParams.get('id');
+            const id = url.searchParams.get('id') ? Number(url.searchParams.get('id')) : null;
 
 
             if (getAll === 'true') {
@@ -375,14 +372,4 @@ import { NextResponse } from "next/server";
                      }); 
                      return NextResponse.json({ productData: uniqueProducts }); 
                     }
-
-          // if (getAll === 'true') {
-          //   return NextResponse.json({ productData }); 
-          // } else { 
-          //   const categories = new Set(productData.map(product => product.category)); 
-          //   const uniqueProducts = Array.from(categories).map(category => {
-          //      return productData.find(product => product.category === category); 
-          //     }); 
-          //     return NextResponse.json({ productData: uniqueProducts });
-          //   }
 }
