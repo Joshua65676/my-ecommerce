@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "@/assets";
 import { fetchProductData } from "../utils/fetchProductData";
+import Link from "next/link";
 
 type Product = {
   _id: number;
@@ -16,6 +17,7 @@ type Product = {
 };
 
 const Category = ({ fetchAll }: { fetchAll: boolean }) => {
+  const [isActive, setIsActive] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -35,6 +37,11 @@ const Category = ({ fetchAll }: { fetchAll: boolean }) => {
   const handleClick = () => {
     setIsVisible(!isVisible);
   };
+
+const handleActiveClick = (category: string) => {
+   setIsActive(category)
+};
+
   return (
     <div>
       <button className="pt-2" onClick={handleClick}>
@@ -51,9 +58,22 @@ const Category = ({ fetchAll }: { fetchAll: boolean }) => {
             {products.length > 0 ? (
               products.map((product) => (
                 <div key={product._id}>
-                  <h3 className=" text-sm font-kumbh font-thin">
-                    {product.category}
-                  </h3>
+                  <Link
+                    href={{
+                      pathname: `/category/${encodeURIComponent(
+                        product.category
+                      )}`,
+                    }}
+                  >
+                    <h3
+                      className={`text-sm font-kumbh font-thin hover:text-Orange ${
+                        isActive ? " text-Orange" : ""
+                      }`}
+                      onClick={() => handleActiveClick(product.category)}
+                    >
+                      {product.category}
+                    </h3>
+                  </Link>
                 </div>
               ))
             ) : (

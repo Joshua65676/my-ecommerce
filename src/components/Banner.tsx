@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchProductData } from "../utils/fetchProductData";
-// import Link from "next/link";
+import Link from "next/link";
 
 type Product = {
   _id: number;
@@ -37,24 +37,35 @@ const Banner = ({ fetchAll }: { fetchAll: boolean }) => {
       <div className="">
         <h1 className="text-4xl font-kumbh font-bold">Category deals</h1>
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between pt-5">
         {products.length > 0 ? (
           products.map((product) => (
-            <div key={product._id} className="flex flex-col gap-3">
-              {/* <Link href={}> */}
-                <div className="">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={150}
-                    height={10}
-                    className="object-cover rounded-xl"
-                  />
-                </div>
-                <h3 className=" text-base font-mono text-center font-semibold">
-                  {product.category}
-                </h3>
-              {/* </Link> */}
+            <div
+              key={product._id}
+              className="hover:bg-LightGrayishBlue hover:shadow-2xl w-[11rem] h-[12rem] -mt-5 hover:border hover:rounded-xl"
+            >
+              <div className="flex flex-col gap-3 ml-3 mt-3">
+                <Link
+                  href={{
+                    pathname: `/category/${encodeURIComponent(
+                      product.category
+                    )}`,
+                  }}
+                >
+                  <div className="">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      width={150}
+                      height={10}
+                      className="object-cover rounded-xl"
+                    />
+                  </div>
+                  <h3 className=" text-base font-mono text-center font-semibold">
+                    {product.category}
+                  </h3>
+                </Link>
+              </div>
             </div>
           ))
         ) : (
