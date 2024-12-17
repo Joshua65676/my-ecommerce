@@ -1,14 +1,17 @@
-import Banner from '@/components/Banner'
-import ProductForU from '@/components/ProductForU'
-import React from 'react'
+import Banner from "@/components/Banner";
+import ProductForU from "@/components/ProductForU";
+import React from "react";
+// import { CartProvider } from "@/context/CartContext";
 
 const page: React.FC = () => {
   return (
-    <div className=''>
-      <Banner fetchAll={false}/>
-      <ProductForU />
-    </div>
-  )
-}
+    // <CartProvider>
+    // </CartProvider>
+      <div className="">
+        <Banner fetchAll={false} />
+        <ProductForU />
+      </div>
+  );
+};
 
-export default page
+export default page;

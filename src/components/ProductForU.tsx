@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchProductData } from "../utils/fetchProductData";
 import { FaStar } from "react-icons/fa6";
 import { MdAddShoppingCart } from "react-icons/md";
 import { Button } from "./ui/Button";
 import Link from "next/link";
+import { CartContext } from "@/context/CartContext";
 
 type Product = {
   _id: number;
@@ -22,6 +23,11 @@ type Product = {
 };
 
 const ProductForU = () => {
+  const cartContext = useContext(CartContext);
+  if (!cartContext) {
+    throw new Error("CartContext must be used within a CartProvider");
+  }
+  const { addToCart } = cartContext;
   const [products, setProducts] = useState<Product[]>([]);
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
 
@@ -37,7 +43,6 @@ const ProductForU = () => {
 
     getProducts();
   }, []);
-
 
   return (
     <section className="w-full max-w-7xl container py-10">
@@ -66,7 +71,20 @@ const ProductForU = () => {
                     />
                     <div className="absolute ml-52 -mt-14 bg-LightGrayishBlue h-12 w-12 shadow-xl rounded-full">
                       <button>
-                        <MdAddShoppingCart className="h-10 w-9 pl-3 pt-2" />
+                        <MdAddShoppingCart
+                          className="h-10 w-9 pl-3 pt-2"
+                          onClick={() =>
+                            addToCart({
+                              _id: product._id,
+                              title: product.title,
+                              category: product.category,
+                              price: product.price,
+                              oldPrice: product.oldPrice,
+                              image: product.image,
+                              quantity: 1,
+                            })
+                          }
+                        />
                       </button>
                     </div>
                   </div>
@@ -101,9 +119,11 @@ const ProductForU = () => {
                   </div>
 
                   {hoveredProduct === product._id && (
-                    <Link href={{
-                      pathname: `/product/${product._id}`,
-                    }}>
+                    <Link
+                      href={{
+                        pathname: `/product/${product._id}`,
+                      }}
+                    >
                       <Button className="bg-BgOrange hover:bg-PaleOrange border-none rounded-xl">
                         <span className="text-Black text-sm font-kumbh font-semibold">
                           See Details

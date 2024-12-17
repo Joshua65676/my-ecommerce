@@ -1,16 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button } from "./ui/Button";
 import Image from "next/image";
 import { carticon } from "@/assets";
 import HelpButton from "./HelpButton";
 import AccountButton from "./AccButton";
 import Category from "./Category";
+import { CartContext } from "@/context/CartContext";
+import { MdAddShoppingCart } from "react-icons/md";
 
 const Navbar: React.FC = () => {
   const [stickyClass, setStickyClass] = useState<boolean>(false);
+  const cartContext = useContext(CartContext);
+
+  if (!cartContext) {
+    throw new Error("CartContext must be used within a CartProvider");
+  }
 
   const stickNavbar = () => {
     if (typeof window !== "undefined") {
@@ -23,6 +30,12 @@ const Navbar: React.FC = () => {
     window.addEventListener("scroll", stickNavbar);
     return () => window.removeEventListener("scroll", stickNavbar);
   }, []);
+
+  const { cart } = cartContext;
+  const cartProductCount = cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
 
   return (
     <nav
@@ -42,7 +55,7 @@ const Navbar: React.FC = () => {
               </span>
             </Link>
 
-            <Category fetchAll={false}/>
+            <Category fetchAll={false} />
           </div>
           {/* Search input */}
           <div className="flex items-center justify-center p-5">
@@ -59,10 +72,19 @@ const Navbar: React.FC = () => {
           <div className="flex flex-row gap-8">
             <HelpButton />
             <AccountButton />
-            <button className="flex flex-row gap-1">
-              <Image src={carticon} alt="carticon" />
-              <span className="text-Grayishblue">Cart</span>
-            </button>
+
+            <Link href={{ pathname: `/cart` }}>
+              <button className="flex flex-row gap-0 hover:text-BgOrange text-GrayishBlue">
+                {/* <Image src={carticon} alt="carticon" className="relative"/> */}
+                <MdAddShoppingCart className="h-6 w-7 text-Grayishblu"/>
+                {cartProductCount > 0 && (
+                  <span className="absolute top-2 ml-2 bg-Orange font-mono text-white rounded-full px-3 py-0.5 text-xs">
+                    {cartProductCount}
+                  </span>
+                )}
+                <span className="text-Grayishblu relative font-kumbh font-medium">Cart</span>
+              </button>
+            </Link>
           </div>
         </main>
       </section>

@@ -1,7 +1,10 @@
+"use client"
 import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
 import { MdAddShoppingCart } from "react-icons/md";
 import { Button } from "@/components/ui/Button";
+import { CartContext } from "@/context/CartContext";
+import { useContext, useEffect, useState } from "react";
 
 type Product = {
   _id: number;
@@ -17,18 +20,34 @@ type Product = {
   rating: number;
 };
 
-async function getProductData(id: number): Promise<Product | null> {
+const getProductData = async (id: number): Promise<Product | null> => {
   const response = await fetch(`http://localhost:3000/api/products?id=${id}`);
   if (!response.ok) {
     return null;
   }
   const product = await response.json();
   return product;
-}
+};
 
-const ProductDetails = async ({ params }: { params: { id: string } }) => {
+const ProductDetails = ({ params }: { params: { id: string } }) => {
+  const cartContext = useContext(CartContext);
+
+  if (!cartContext) {
+    throw new Error("CartContext must be used within a CartProvider");
+  }
+
+  const { addToCart } = cartContext;
+
+  const [product, setProduct] = useState<Product | null>(null);
   const productId = Number(params.id);
-  const product = await getProductData(productId);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const productData = await getProductData(productId);
+      setProduct(productData);
+    };
+    fetchProduct();
+  }, [productId]);
 
   if (!product) {
     return <p>Product not found</p>;
@@ -38,7 +57,7 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
     <section className="container max-w-7xl mx-auto w-full">
       <main className="flex flex-row justify-between gap-[10rem] items-center  p-5 py-32">
         {/* Image */}
-        <div className="w-[200rem] h-full">
+        <div className="w-[200re] h-full">
           <Image
             src={product.image}
             alt={product.title}
@@ -63,7 +82,7 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           {/* Discrition */}
-          <div className="">
+          <div className="w-[34rem]">
             <p className="font-mono md:font-medium mx:font-bold md:text-[15px] mx:text-[12.5px] text-GrayishBlue leading-[26.2px] -tracking-[2.5%]">
               {product.description}
             </p>
@@ -97,7 +116,20 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
           </div>
           {/* AddToCartButton */}
           <div className="">
-            <Button className="bg-Orange border-Orange md:w-56 mx:w-full rounded-xl hover:bg-BgOrange">
+            <Button
+              onClick={() =>
+                addToCart({
+                  _id: product._id,
+                  title: product.title,
+                  category: product.category,
+                  price: product.price,
+                  oldPrice: product.oldPrice,
+                  image: product.image,
+                  quantity: 1,
+                })
+              }
+              className="bg-Orange border-Orange md:w-56 mx:w-full rounded-xl hover:bg-BgOrange"
+            >
               <div className="flex flex-row gap-5">
                 <MdAddShoppingCart className="h-8 w-6" />
                 <span className="text-Black font-bold  font-kumbh text-base pt-1">
@@ -113,3 +145,36 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
 };
 
 export default ProductDetails;
+
+// const getProductData = async (id: number): Promise<Product | null> => {
+//   const response = await fetch(`http://localhost:3000/api/products?id=${id}`);
+//   if (!response.ok) {
+//     return null;
+//   }
+//   const product = await response.json();
+//   return product;
+// };
+
+// const ProductDetails = ({ params }: { params: { id: string } }) => {
+//   const cartContext = useContext(CartContext);
+
+//   if (!cartContext) {
+//     throw new Error('CartContext must be used within a CartProvider');
+//   }
+
+//   const { addToCart } = cartContext;
+
+//   const [product, setProduct] = useState<Product | null>(null);
+//   const productId = Number(params.id);
+
+//   useEffect(() => {
+//     const fetchProduct = async () => {
+//       const productData = await getProductData(productId);
+//       setProduct(productData);
+//     };
+//     fetchProduct();
+//   }, [productId]);
+
+//   if (!product) {
+//     return <p>Product not found</p>;
+//   }
