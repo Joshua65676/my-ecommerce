@@ -3,8 +3,6 @@
 import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
 import { Button } from "./ui/Button";
-import Image from "next/image";
-import { carticon } from "@/assets";
 import HelpButton from "./HelpButton";
 import AccountButton from "./AccButton";
 import Category from "./Category";
@@ -75,7 +73,6 @@ const Navbar: React.FC = () => {
 
             <Link href={{ pathname: `/cart` }}>
               <button className="flex flex-row gap-0 hover:text-BgOrange text-GrayishBlue">
-                {/* <Image src={carticon} alt="carticon" className="relative"/> */}
                 <MdAddShoppingCart className="h-6 w-7 text-Grayishblu"/>
                 {cartProductCount > 0 && (
                   <span className="absolute top-2 ml-2 bg-Orange font-mono text-white rounded-full px-3 py-0.5 text-xs">
