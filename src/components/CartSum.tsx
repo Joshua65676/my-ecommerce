@@ -1,9 +1,27 @@
 import React, { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
 import { Button } from "./ui/Button";
+// import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { auth } from "@/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const CartSum = () => {
+  const router = useRouter();
+  const [user, loading] = useAuthState(auth);
   const cartContext = useContext(CartContext);
+
+  const handleCheckout = () => {
+    if (!loading) {
+      if (user) {
+        // If user is logged in, navigate to checkout/addresses
+        router.push("/checkout/addresses");
+      } else {
+        // If user is not logged in, navigate to login page
+        router.push("/login?redirect=/checkout/addresses");
+      }
+    }
+  };
 
   if (!cartContext) {
     throw new Error("CartContext must be used within a CartProvider");
@@ -32,12 +50,14 @@ const CartSum = () => {
         </div>
         <hr className="" />
         <div className="p-2 items-center w-full">
-          <Button className="bg-Orange hover:bg-BgOrange border-none rounded-xl w-full h-[3rem]">
-            <span className="text-Black text-sm font-kumbh font-semibold uppercase flex gap-2">
-              Checkout
-              <span> (${totalPrice.toFixed(2)})</span>
-            </span>
-          </Button>
+          {/* <Link href={{ pathname: `/checkout/addresses` }}> */}
+            <Button onClick={handleCheckout} className="bg-Orange hover:bg-BgOrange border-none rounded-xl w-full h-[3rem]">
+              <span className="text-Black text-sm font-kumbh font-semibold uppercase flex gap-2">
+                Checkout
+                <span> (${totalPrice.toFixed(2)})</span>
+              </span>
+            </Button>
+          {/* </Link> */}
         </div>
       </div>
     </main>

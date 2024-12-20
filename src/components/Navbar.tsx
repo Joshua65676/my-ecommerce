@@ -7,7 +7,7 @@ import HelpButton from "./HelpButton";
 import AccountButton from "./AccButton";
 import Category from "./Category";
 import { CartContext } from "@/context/CartContext";
-import { MdAddShoppingCart } from "react-icons/md";
+import { MdAddShoppingCart } from "@/assets";
 
 const Navbar: React.FC = () => {
   const [stickyClass, setStickyClass] = useState<boolean>(false);
